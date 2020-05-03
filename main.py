@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import send_file
+from flask import send_file,current_app
 import time
 
 app = Flask(__name__)
@@ -12,9 +12,9 @@ def home():
 def today():
 	return time.strftime("%T")
 
-@app.route('/show-pdf')
-def show_static_pdf():
-	file=open("k.pdf","rb")
-	return send_file(file,attachment_filename="kr.pdf")
+@app.route('/show-pdf', methods=['GET', 'POST'])
+def download():
+	path = "k.pdf"
+	return send_file(path, as_attachment=True)
 
 app.run()
