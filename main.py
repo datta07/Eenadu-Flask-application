@@ -4,7 +4,7 @@ import enaduNew
 import time
 import os
 import dirve
-import jsonController
+import fire
 import time
 from flask_cors import CORS
 
@@ -26,14 +26,14 @@ def today():
 @app.route('/sh-pdf/<flid>/<flname>/<quality>', methods=['GET', 'POST'])
 def download(flid,flname,quality):
 	date=time.strftime("%d-%m-%Y")
-	link=jsonController.get_value(date,flid)
-	if (link):
-		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a><br>"+jsonController.data()
+	link=fire.get_firebase(date,flid)
+	if (link!=None):
+		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a><br>"
 	else:
 		enaduNew.downloadPaper(flid,flname,quality)
 		link=dirve.getLink(flname+".pdf")
+		fire.set_firebase(date,flid,link)
 		os.remove(flname+".pdf")
-		jsonController.set_values(date,flid,link)
-		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a>"+jsonController.data()
+		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a>"
 
 #app.run()
