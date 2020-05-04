@@ -46,6 +46,7 @@ class EenaduEpaper:
 		img=self.emptyImage[0]
 		self.emptyImage.pop(0)
 		img.save(self.name+'.pdf',save_all=True,optimize=True,quality=self.quality,append_images=self.emptyImage)
-def downloadPaper(no,name,quality)
+
+def downloadPaper(no,name,quality):
 	pap=EenaduEpaper(no,name,quality)
 	pap.DownloadPaper()
