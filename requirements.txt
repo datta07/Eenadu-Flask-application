@@ -5,8 +5,6 @@ pillow
 lxml
 google-api-python-client
 httplib2
-sys
-logging
 mimetypes
 apiclient
 oauth2client
