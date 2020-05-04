@@ -3,6 +3,9 @@ from flask import send_file,current_app
 import sak
 import time
 import os
+import dirve
+import jsonController
+import time
 
 app = Flask(__name__)
 
@@ -16,8 +19,14 @@ def today():
 
 @app.route('/sh-pdf/<flid>/<flname>', methods=['GET', 'POST'])
 def download(flid,flname):
-	sak.downloadPaper(flid)
-	path = "file.pdf"
-	return send_file(path,as_attachment=True,attachment_filename=flname+'.pdf')
+	date=time.strftime("%d-%m-%Y")
+	link=jsonController.get_value(date,flid)
+	if (link):
+		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a>"
+	else:
+		sak.downloadPaper(flid)
+		link=dirve.getLink("file.pdf")
+		jsonController.set_values(date,flid,link)
+		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a>"
 
 #app.run()
