@@ -79,10 +79,10 @@ def getLink(file_path):
         print(e)
         sys.exit(1)
     try:
-        with open(token_file) as f: pass
+        with open('./auth_token.txt') as f: pass
     except IOError:
         http = authorize(token_file, create_token_file(token_file))
-    http = authorize(token_file, None)
+    http = authorize("./auth_token.txt", None)
     file_name, mime_type = file_ops(file_path)
 
     try:
