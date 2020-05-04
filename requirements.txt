@@ -5,7 +5,3 @@ pillow
 lxml
 google-api-python-client
 httplib2
-mimetypes
-apiclient
-oauth2client
-wget
