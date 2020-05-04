@@ -8,7 +8,8 @@ def set_values(date,value,link):
 	else:
 		data[date]={value:link}
 	with open('data.json','w') as f:
-		json.dump(data, f)
+		data=json.dumps(data)
+		f.write(str(data))
 
 def get_value(date,value):
 	with open("data.json","r") as f:
