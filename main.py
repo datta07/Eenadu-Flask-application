@@ -7,6 +7,10 @@ import dirve
 import jsonController
 import time
 
+
+os.environ['TZ']='Asia/Kolkata'
+time.tzset()
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -22,7 +26,7 @@ def download(flid,flname):
 	date=time.strftime("%d-%m-%Y")
 	link=jsonController.get_value(date,flid)
 	if (link):
-		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a>"
+		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a><br>"+jsonController.data()
 	else:
 		sak.downloadPaper(flid)
 		link=dirve.getLink("file.pdf")

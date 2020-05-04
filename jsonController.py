@@ -13,3 +13,7 @@ def get_value(date,value):
 	except Exception:
 		return False
 
+def data():
+	data=json.loads(open("data.json","r").read())
+	return str(data)
+
