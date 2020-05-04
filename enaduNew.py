@@ -45,7 +45,8 @@ class EenaduEpaper:
 			i.join()
 		img=self.emptyImage[0]
 		self.emptyImage.pop(0)
-		img.save(self.name+'.pdf',save_all=True,optimize=True,quality=self.quality,append_images=self.emptyImage)
+		img.save(self.name+'.pdf',save_all=True,optimize=True,quality=int(self.quality),append_images=self.emptyImage)
+		#optimize=True,quality=quality
 
 def downloadPaper(no,name,quality):
 	pap=EenaduEpaper(no,name,quality)
