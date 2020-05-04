@@ -4,7 +4,7 @@ requests
 pillow
 lxml
 google-api-python-client
-python-httplib2
+httplib2
 urllib
 sys
 logging
