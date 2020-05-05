@@ -25,6 +25,7 @@ def today():
 
 @app.route('/sh-pdf/<flid>/<flname>/<quality>', methods=['GET', 'POST'])
 def download(flid,flname,quality):
+	return "Download Paper from this app-><br><a href=https://play.google.com/store/apps/details?id=com.sdnews.epapers&hl=en>link</a>"
 	date=time.strftime("%d-%m-%Y")
 	link=fire.get_firebase(date,flid)
 	if (link!=None):
