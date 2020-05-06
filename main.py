@@ -37,7 +37,7 @@ def download(flid,flname,quality):
 		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a><br>To Download other Papers from this app-><br><a href=https://play.google.com/store/apps/details?id=com.sdnews.epapers&hl=en>link</a>"
 
 @app.route('/Eenadu-pdfs/<flid>/<flname>/<quality>', methods=['GET', 'POST'])
-def download(flid,flname,quality):
+def download1(flid,flname,quality):
 	date=time.strftime("%d-%m-%Y")
 	link=fire.get_firebase(date,flid)
 	if (link!=None):
