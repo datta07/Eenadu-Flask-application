@@ -49,4 +49,17 @@ def download1(flid,flname,quality):
 		os.remove(flname+".pdf")
 		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a><br>To Download other Papers from this app-><br><a href=https://play.google.com/store/apps/details?id=com.telugudaily.downloader&hl=en>link</a>"
 
+@app.route('/Epdf/<flid>/<flname>/<quality>', methods=['GET', 'POST'])
+def download2(flid,flname,quality):
+	date=time.strftime("%d-%m-%Y")
+	link=fire.get_firebase(date,flid)
+	if (link!=None):
+		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a><br>To Download other Papers from this app-><br><a href=https://play.google.com/store/apps/details?id=com.teluguenewspaperspdf.dailynewspaper&hl=en>link</a>"
+	else:
+		enaduNew.downloadPaper(flid,flname,quality)
+		link=dirve.getLink(flname+".pdf")
+		fire.set_firebase(date,flid,link)
+		os.remove(flname+".pdf")
+		return "download "+flname+"<br>Download: <a href="+link+">clickHere</a><br>To Download other Papers from this app-><br><a href=https://play.google.com/store/apps/details?id=com.teluguenewspaperspdf.dailynewspaper&hl=en>link</a>"
+
 #app.run()
