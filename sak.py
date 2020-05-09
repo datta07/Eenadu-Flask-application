@@ -57,7 +57,7 @@ class readwhere:
 			i.join()
 		img=self.emptyImage[0]
 		self.emptyImage.pop(0)
-		img.save(self.folder+'/'+self.name+'.pdf',save_all=True, append_images=self.emptyImage)
+		img.save(self.folder+'/'+self.name+'.pdf',save_all=True, optimize=True,quality=30,append_images=self.emptyImage)
 
 def getTodayId(k):
 	with requests.Session() as s:
@@ -83,6 +83,8 @@ def get_network(path):
 	except Exception as e:
 		print('no internet')
 		return 0
+
+
 def downloadPaper(id):
 	obj=readwhere("https://epaper.sakshi.com/pagemeta/get/"+getTodayId(id)+"/1-50",'.','file')
 	obj.DownloadPaper()
